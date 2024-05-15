@@ -64,3 +64,8 @@ export const teams = [
   "teamName": "São Paulo"
 }
 ];
+
+export const team = {
+  "id": 3,
+  "teamName": "Botafogo"
+};
