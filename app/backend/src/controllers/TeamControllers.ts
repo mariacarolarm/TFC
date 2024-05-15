@@ -8,4 +8,4 @@ export default class TeamsController {
     const serviceResponse = await this.service.getAllTeams();
     res.status(200).json(serviceResponse.data);
   }
-}
+};
