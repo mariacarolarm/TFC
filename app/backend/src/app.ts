@@ -12,7 +12,7 @@ class App {
 
     this.config();
 
-    this.app.use(router)
+    this.app.use(router);
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
