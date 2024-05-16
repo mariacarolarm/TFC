@@ -7,9 +7,9 @@ class Validations {
     if (!email || !password) {
       return res.status(400).json({ message: 'All fields must be filled' });
     }
-    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
-      return res.status(401).json({ message: 'Invalid email' });
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
     if (password.length < 6) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -21,7 +21,7 @@ class Validations {
   Promise<Response | void> {
     const token = req.headers.authorization;
     if (!token) {
-      return res.status(404).json({ message: 'Token not found' });
+      return res.status(401).json({ message: 'Token not found' });
     }
     const validToken = await JWT.verify(token);
     if (validToken === 'Token must be a valid token') {

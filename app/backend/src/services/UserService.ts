@@ -22,6 +22,6 @@ export default class UserService {
       const token = this.jwtService.sign({ email });
       return { status: 'SUCCESSFUL', data: { token } };
     }
-    return { status: 'NOT_FOUND', data: { message: 'User not found' } };
+    return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
   }
 }
