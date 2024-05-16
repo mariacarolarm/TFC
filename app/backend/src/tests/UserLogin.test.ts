@@ -28,7 +28,7 @@ describe('Login Test', function() {
       .send(invalidEmailLoginBody);
 
     expect(status).to.equal(401);
-    expect(body).to.be.deep.equal({ message: 'Invalid email' });
+    expect(body).to.be.deep.equal({ message: 'Invalid email or password' });
   });
 
   it('shouldn\'t login with an invalid password', async function() {
@@ -45,7 +45,7 @@ describe('Login Test', function() {
     const { status, body } = await chai.request(app)
       .post('/login')
       .send(validLoginBody);
-    expect(status).to.equal(404);
-    expect(body).to.be.deep.equal({ message: 'User not found' });
+    expect(status).to.equal(401);
+    expect(body).to.be.deep.equal({ message: 'Invalid email or password' });
   });
 });
