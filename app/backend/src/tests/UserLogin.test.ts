@@ -35,7 +35,7 @@ describe('Login Test', function() {
     const { status, body } = await chai.request(app).post('/login')
       .send(invalidPasswordLoginBody);
 
-    expect(status).to.equal(400);
+    expect(status).to.equal(401);
     expect(body).to.be.deep.equal({ message: 'Invalid email or password' });
   });
 
