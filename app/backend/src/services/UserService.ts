@@ -5,6 +5,7 @@ import UserModel from '../models/UserModel';
 import { IToken } from '../Interfaces/IToken';
 import JWT from '../utils/JWT';
 import { ServiceResponse, ServiceMessage } from '../Interfaces/ServiceResponse';
+import { IRole } from '../Interfaces/IRole';
 
 export default class UserService {
   constructor(
@@ -23,5 +24,13 @@ export default class UserService {
       return { status: 'SUCCESSFUL', data: { token } };
     }
     return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
+  }
+
+  public async getUserRole(email: string): Promise<ServiceResponse<ServiceMessage | IRole>> {
+    const user = await this.userModel.findByEmail(email);
+    const { role } = user as IUser;
+    console.log(user);
+
+    return { status: 'SUCCESSFUL', data: { role } };
   }
 }

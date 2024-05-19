@@ -7,6 +7,6 @@ const router = Router();
 
 router.use('/teams', teamsRouter);
 router.use('/login', userRouter);
-router.use('/matches', matchesRouter);
+router.use('/', matchesRouter);
 
 export default router;

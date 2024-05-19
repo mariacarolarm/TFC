@@ -13,4 +13,5 @@ export type Identifiable = { id: ID };
 export interface ILogin {
   email: string;
   password: string;
+  role: string;
 }
