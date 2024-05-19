@@ -11,6 +11,11 @@ router.patch(
   Validations.validateToken,
   (req, res) => matchesController.finishMatch(req, res),
 );
+router.patch(
+  '/matches/:id',
+  Validations.validateToken,
+  (req, res) => matchesController.updateMatch(req, res),
+);
 router.post(
   '/matches',
   Validations.validateToken,

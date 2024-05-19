@@ -35,4 +35,16 @@ export default class MatchesController {
     const serviceResponse = await this.service.createMatch(req.body);
     res.status(201).json(serviceResponse.data);
   }
+
+  public async updateMatch(req: Request, res: Response): Promise<Response> {
+    const id = Number(req.params.id);
+    const matchInfo = req.body;
+    const serviceResponse = await this.service.updateMatch(id, matchInfo);
+
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  }
 }

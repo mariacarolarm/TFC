@@ -1,3 +1,4 @@
+import MatchModel from '../models/MatchModel';
 import Imatches from '../Interfaces/IMatches';
 import { ServiceResponse, ServiceMessage } from '../Interfaces/ServiceResponse';
 import Matches from '../database/models/MatchesModel';
@@ -5,6 +6,7 @@ import Teams from '../database/models/TeamsModel';
 
 export default class MatchesService {
   private matchesModel = Matches;
+  private model = new MatchModel();
 
   static getMatches() {
     return Matches.findAll({
@@ -40,5 +42,14 @@ export default class MatchesService {
     const newMatch = await this.matchesModel.create({ ...match, inProgress: true });
 
     return { status: 'SUCCESSFUL', data: newMatch };
+  }
+
+  public async updateMatch(id: number, data: Imatches): Promise<ServiceResponse<ServiceMessage>> {
+    const updatedMatch = await this.model.updateOngoingMatch(id, data);
+    if (!updatedMatch) {
+      return { status: 'CONFLICT',
+        data: { message: `There are no updates to perform in Match ${id}` } };
+    }
+    return { status: 'SUCCESSFUL', data: { message: 'Match updated' } };
   }
 }
