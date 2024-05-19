@@ -29,7 +29,6 @@ export default class UserService {
   public async getUserRole(email: string): Promise<ServiceResponse<ServiceMessage | IRole>> {
     const user = await this.userModel.findByEmail(email);
     const { role } = user as IUser;
-    console.log(user);
 
     return { status: 'SUCCESSFUL', data: { role } };
   }

@@ -6,3 +6,5 @@ export default interface Imatches {
   awayTeamGoals: number,
   inProgress: boolean,
 }
+
+export type NewEntity<T> = Omit<T, 'id'>;

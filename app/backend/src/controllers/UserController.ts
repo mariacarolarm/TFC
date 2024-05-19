@@ -26,7 +26,6 @@ export default class UserController {
       return res.status(401).json({ message: 'Invalid token' });
     }
     const validToken = await JWT.verify(token);
-    console.log(validToken);
     if (typeof validToken === 'string') {
       return res.status(401).json({ message: 'Token must be a valid token' });
     }

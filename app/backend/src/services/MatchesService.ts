@@ -1,3 +1,4 @@
+import Imatches from '../Interfaces/IMatches';
 import { ServiceResponse, ServiceMessage } from '../Interfaces/ServiceResponse';
 import Matches from '../database/models/MatchesModel';
 import Teams from '../database/models/TeamsModel';
@@ -33,5 +34,11 @@ export default class MatchesService {
     await match.save();
 
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async createMatch(match: Imatches): Promise<ServiceResponse<Imatches>> {
+    const newMatch = await this.matchesModel.create({ ...match, inProgress: true });
+
+    return { status: 'SUCCESSFUL', data: newMatch };
   }
 }
