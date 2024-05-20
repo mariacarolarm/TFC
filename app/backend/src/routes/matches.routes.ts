@@ -19,6 +19,7 @@ router.patch(
 router.post(
   '/matches',
   Validations.validateToken,
+  Validations.validateMatch,
   (req, res) => matchesController.newMatch(req, res),
 );
 
